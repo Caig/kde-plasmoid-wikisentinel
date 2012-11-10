@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+     http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+
+<kcfgfile name=""/>
+<group name="General">
+    <entry name="wiki" type="Int">
+        <label>The KDE wiki to follow</label>
+        <default>0</default>
+    </entry>
+    <entry name="language" type="String">
+        <label>Language code</label>
+        <default></default>
+    </entry>
+    <entry name="updateInterval" type="Int">
+        <label>Update every...hours</label>
+        <default>1</default>
+    </entry>
+</group>
+<group name="Storing">
+    <entry name="keepMaxItems" type="Bool">
+        <label>Keep fixed number of items</label>
+        <default>true</default>
+    </entry>
+    <entry name="keepMaxItemsNumber" type="Int">
+        <label>Number of items to keep</label>
+        <default>10</default>
+    </entry>
+    <entry name="keepForDays" type="Bool">
+        <label>Remove older items</label>
+        <default>false</default>
+    </entry>
+    <entry name="keepForDaysNumber" type="Int">
+        <label>Days to keep the items</label>
+        <default>15</default>
+    </entry>
+</group>  
+</kcfg>

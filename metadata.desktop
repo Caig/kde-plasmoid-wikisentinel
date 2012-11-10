@@ -1,0 +1,21 @@
+[Desktop Entry]
+Comment=Keep an eye on KDE UserBase & TechBase translated pages
+Encoding=UTF-8
+Icon=/contents/images/icon.png
+Keywords=
+Name=WikiSentinel
+Type=Service
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=Caig
+X-KDE-PluginInfo-Category=Online Services
+X-KDE-PluginInfo-Email=giacomosrv@gmail.com
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=wikisentinel
+X-KDE-PluginInfo-Version=0.9.7
+X-KDE-PluginInfo-Website=
+X-KDE-ServiceTypes=Plasma/Applet,Plasma/PopupApplet
+X-Plasma-API=declarativeappletscript
+X-Plasma-DefaultSize=200,200
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-RemoteLocation=
+X-Plasma-RequiredExtensions=LaunchApp

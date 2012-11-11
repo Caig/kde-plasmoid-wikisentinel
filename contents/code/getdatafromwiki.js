@@ -45,7 +45,7 @@ function getDiffsList(baseUrl, title, time, callback) {
 
                 console.log("Got: diffs list");
                 
-                callback(diffUrl)
+                callback(diffUrl);
             }
         } else
             console.log("Wait for diffs list...");

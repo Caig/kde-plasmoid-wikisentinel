@@ -336,13 +336,12 @@ Item {
                         sourceWikiBaseUrl,
                         title,
                         Time.toDateDiff(time),
-                        function(diffUrl)
-                            {
-                                if (diffUrl == "")
-                                    diffUrl = "Error";
+                        function(diffUrl) {
+                            if (diffUrl == "")
+                                diffUrl = "Error";
                                     
-                                diffDialog.diffUrl=diffUrl;
-                            }
+                            diffDialog.diffUrl=diffUrl;
+                        }
                     );
                                        
                     diffDialog.title = title + " - " + i18n("Difference between revisions");

@@ -177,7 +177,6 @@ PlasmaCore.Dialog {
             anchors.fill: scroll
                   
             contentHeight: dialogWebView.height
-            //contentWidth: dialogWebView.width
             
             flickableDirection: Flickable.VerticalFlick
             clip: true
@@ -185,9 +184,9 @@ PlasmaCore.Dialog {
                 WebView {
                     id: dialogWebView
                     
-                    anchors.fill: parent //no per evitare problemi disegno barra?
+                    //anchors.fill: parent //no per evitare problemi disegno barra
                     
-                    preferredHeight: 300 // 400
+                    preferredHeight: 300
                     preferredWidth: baseItem.width
 
                     backgroundColor: "transparent"

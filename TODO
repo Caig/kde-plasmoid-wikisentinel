@@ -21,8 +21,8 @@
 ** continue to clean the code according to guidelines
 ** split more code sections in new files to simplify main.qml
 * show the plasmoid icon in the notification
-* create a translation template
 * if there are more than one new item, show just a notification for them
+* config option to enable/disable notifications
 * update at request (is useful?)
 * more flexible archive (keep not read items? ecc?)
 * make web preview dialog window more easily drag-able? (but redraw issue)

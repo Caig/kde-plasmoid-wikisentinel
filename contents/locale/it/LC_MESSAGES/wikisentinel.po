@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-12 17:28+0100\n"
+"POT-Creation-Date: 2012-11-12 17:44+0100\n"
 "PO-Revision-Date: 2012-11-12 17:29+0100\n"
 "Last-Translator: Giacomo Barazzetti <giacomosrv@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 msgid "Sorry, an error occurred. Try to open the page in your browser."
 msgstr "Si è verificato un errore. Prova ad aprire la pagina nel tuo browser."
 
-#: ../ui/main.qml:87
+#: ../ui/main.qml:88
 msgid "needs you to update:"
 msgstr "ha bisogno di te per aggiornare:"
 
-#: ../ui/main.qml:279
+#: ../ui/main.qml:280
 msgid "No pages to update."
 msgstr "Nessuna pagina da aggiornare."
 
-#: ../ui/main.qml:345
+#: ../ui/main.qml:346
 msgid "Difference between revisions"
 msgstr "Differenza tra le revisioni"
 
@@ -44,4 +44,3 @@ msgstr "Caig"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "giacomosrv@gmail.com"
-

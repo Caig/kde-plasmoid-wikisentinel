@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-12 17:30+0100\n"
+"POT-Creation-Date: 2012-11-12 17:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Sorry, an error occurred. Try to open the page in your browser."
 msgstr ""
 
-#: ../ui/main.qml:87
+#: ../ui/main.qml:88
 msgid "needs you to update:"
 msgstr ""
 
-#: ../ui/main.qml:279
+#: ../ui/main.qml:280
 msgid "No pages to update."
 msgstr ""
 
-#: ../ui/main.qml:345
+#: ../ui/main.qml:346
 msgid "Difference between revisions"
 msgstr ""
 

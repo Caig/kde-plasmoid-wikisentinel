@@ -203,7 +203,7 @@ Item {
         var service = notifyService.serviceForSource("notification");
         var operation = service.operationDescription("createNotification");
         operation.appName = "WikiSentinel";
-        //operation.appIcon = "plasmapackage:/images/icon.png"; //doesn't work
+        operation.appIcon = plasmoid.file("images", "icon.png"); // "plasmapackage:/images/icon.png" doesn't work
         operation.summary = summary;
         operation.body = body;
         operation.timeout = 5000;

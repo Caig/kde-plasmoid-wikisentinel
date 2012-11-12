@@ -429,7 +429,5 @@ Item {
         //updateDataList(); //senza però non carica subito le voci
         
         DiffDialog = Qt.createComponent("DiffDialog.qml");
-        
-        sendNotification("ciao1", "ciao2");
     }
 }

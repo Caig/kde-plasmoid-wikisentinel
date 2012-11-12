@@ -33,16 +33,17 @@ Item {
     property int minimumWidth: 300
     property int minimumHeight: 200
     
-    property string sourceWiki // from config
+    property string sourceWiki
     property string sourceWikiBaseUrl
-    property string languageCode // from config
-    property string updateInterval // from config
-    property int latestTimeInDB // from database
+    property string languageCode
+    property string updateInterval
+    property int latestTimeInDB // to understand if an item in the feed is new
     
-    property bool keepMaxItems // from config
-    property int keepMaxItemsNumber // from config
-    property bool keepForDays // from config
-    property int keepForDaysNumber // from config
+    // settings for the archive management
+    property bool keepMaxItems
+    property int keepMaxItemsNumber
+    property bool keepForDays
+    property int keepForDaysNumber
     
     ListModel { id:dataList }
     
@@ -68,7 +69,7 @@ Item {
             var DBWiki = sourceWiki;
             var DBRead = 0;
             
-            var updatatedDB = false;
+            var updatatedDB = false; //to know if we need to update the dataList (and so the pages list)
 
             latestTimeInDB = Database.getLatestTimeInDB(sourceWiki);
 
@@ -79,15 +80,15 @@ Item {
                     
                 var lang = DBTitle.slice(DBTitle.lastIndexOf('/') - DBTitle.length);
                 
-                if (lang == '/' + languageCode) {
-                    if (DBTime > latestTimeInDB) {
+                if (lang == '/' + languageCode) { // if the item is in the wanted language...
+                    if (DBTime > latestTimeInDB) { //if is a new item not in database...
                         console.log("Added: " + DBWiki + " - " + DBRead + " - " + DBTime + " - " + DBTitle + " - " + DBLink);
                         Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
                         updatatedDB = true;
                         sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), DBTitle);
                     }
                     else {
-                        console.log(i18n("No new translation to update."));
+                        console.log("No new translation to update.");
                         break;
                     }
                 }
@@ -321,9 +322,7 @@ Item {
                 
                 onExited: { itemDelete.opacity=0; }
                 
-                onClicked: {
-                    console.log("clic: " + link);
-                    
+                onClicked: {                   
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
                     itemName.text = title; //no more bold page name because it's read
                                       
@@ -350,7 +349,7 @@ Item {
                     diffDialog.x = pos.x;
                     diffDialog.y = pos.y;
                     
-                    diffDialog.windowFlags = 0x00040000; //serve? //Qt::WindowStaysOnTopHint
+                    diffDialog.windowFlags = 0x00040000; //Qt::WindowStaysOnTopHint
                     
                     diffDialog.visible = true;
                 }
@@ -363,8 +362,8 @@ Item {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
                 }
-                width: parent.height //20
-                height: parent.height //20
+                width: parent.height
+                height: parent.height
                 
                 opacity: 0
                 Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutQuad; } }
@@ -406,6 +405,7 @@ Item {
         
         plasmoid.passivePopup = true; //other windows can gain focus and the popup won't close
         
+        /* doesn't work...
         if (plasmoid.formFactor == Horizontal || plasmoid.formFactor == Vertical) {
             var toolTipData = new Object;
             //toolTipData["image"] = "icon.png";
@@ -413,6 +413,7 @@ Item {
             toolTipData["subText"] = i18n("ToolTip descriptive sub text");
             plasmoid.popupIconToolTip = toolTipData;
         }
+        */
         
         plasmoid.addEventListener('ConfigChanged', configChanged);
         

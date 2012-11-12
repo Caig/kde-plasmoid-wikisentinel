@@ -147,6 +147,12 @@ Item {
         }
     }
     
+    PlasmaCore.DataSource {
+        id: notifyService
+        
+        dataEngine: "notifications"
+    }
+    
     function configChanged() {
         //problema se più di un plasmoide x accesso a database?!
         
@@ -193,18 +199,16 @@ Item {
             messageLabel.visible = false;
     }
     
-    function sendNotification(summary, body) {
-        //from http://techbase.kde.org/Development/Tutorials/Plasma/JavaScript/CheatSheet#Notifications
-        var engine = dataEngine("notifications");
-        var service = engine.serviceForSource("notification");
-        var op = service.operationDescription("createNotification");
-        op["appName"] = "WikiSentinel";
-        //op["appIcon"] = "icon";
-        op["summary"] = summary;
-        op["body"] = body;
-        op["timeout"] = 5000;
-        
-        service.startOperationCall(op);
+    function sendNotification(summary, body) {        
+        var service = notifyService.serviceForSource("notification");
+        var operation = service.operationDescription("createNotification");
+        operation.appName = "WikiSentinel";
+        //operation.appIcon = "plasmapackage:/images/icon.png"; //doesn't work
+        operation.summary = summary;
+        operation.body = body;
+        operation.timeout = 5000;
+ 
+        var job = service.startOperationCall(operation);
     }
     
     Locale.Locale { id:locale }
@@ -331,6 +335,7 @@ Item {
                     
                     diffDialog.loading = true; //to activate the BusyIndicator
 
+                    // retrieve the url of the wanted difference page to pass it to the preview dialog
                     GetDataFromWiki.getDiffsList(
                         sourceWikiBaseUrl,
                         title,
@@ -424,5 +429,7 @@ Item {
         //updateDataList(); //senza però non carica subito le voci
         
         DiffDialog = Qt.createComponent("DiffDialog.qml");
+        
+        sendNotification("ciao1", "ciao2");
     }
 }

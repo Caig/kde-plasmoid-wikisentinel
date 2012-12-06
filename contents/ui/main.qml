@@ -339,8 +339,11 @@ Item {
                     
                     var dialogWindowFlags = Qt.Popup;
                     
-                    if (DiffDialog.status == Component.Ready)
-                        var diffDialog = DiffDialog.createObject(parent, { title:dialogTitle, windowFlags: dialogWindowFlags });
+                    if (DiffDialog.status == Component.Ready) {
+                        var diffDialog = DiffDialog.createObject(parent, { title:dialogTitle, windowFlags:dialogWindowFlags });
+                    } else if (DiffDialog.status == Component.Error) {
+                        console.log("Error loading component:", DiffDialog.errorString());
+                    }
                     
                     var pos = diffDialog.popupPosition(singleItem);
                     diffDialog.x = pos.x;

@@ -3,9 +3,10 @@
 == Bug ==
 ** set language code to user language at first time -> doesn't work, for languages with more than 2 letters names
 ** busy indicator running when offline (need to understand how to better use the data engine)
+** some items don't load a preview (time issue(?))
 ** checkered board issue in webview (I think it's solved with newer versions of QtQuick I can't use)
 ** change of just language code doesn't update the plasmoid
-** scrollarea issue when removing items (scrollbar doesn't update)
+** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
 * handle offline state in webview
 * better language code configuration (list of languages?)
 * show the date & time according to user settings
@@ -26,4 +27,6 @@
 * more flexible archive (keep not read items? ecc?)
 * make web preview dialog window more easily drag-able? (but redraw issue)
 * about the remove animation in item list: use PlasmaExtras.DisappearAnimation when it will work (is this the current issue? https://git.reviewboard.kde.org/r/106818/)
+* if in the panel, close the plasmoid when the user open the page in the browser
+* download the po file and open it to start translating as alternative action?
 * ...

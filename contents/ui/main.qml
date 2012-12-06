@@ -334,9 +334,17 @@ Item {
                 onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
                     itemName.text = title; //no more bold page name because it's read
-                                      
+                    
+                    var dialogTitle = title + " - " + i18n("Difference between revisions");
+                    
+                    var dialogWindowFlags = Qt.Popup;
+                    
                     if (DiffDialog.status == Component.Ready)
-                        var diffDialog = DiffDialog.createObject(parent, {});
+                        var diffDialog = DiffDialog.createObject(parent, { title:dialogTitle, windowFlags: dialogWindowFlags });
+                    
+                    var pos = diffDialog.popupPosition(singleItem);
+                    diffDialog.x = pos.x;
+                    diffDialog.y = pos.y;
                     
                     diffDialog.loading = true; //to activate the BusyIndicator
 
@@ -352,14 +360,7 @@ Item {
                             diffDialog.diffUrl=diffUrl;
                         }
                     );
-                                       
-                    diffDialog.title = title + " - " + i18n("Difference between revisions");
-                                        
-                    var pos = diffDialog.popupPosition(singleItem);
-                    diffDialog.x = pos.x;
-                    diffDialog.y = pos.y;
-                    
-                    diffDialog.windowFlags = Qt.Popup; //Qt::WindowStaysOnTopHint
+                                      
                     
                     diffDialog.visible = true;
                 }

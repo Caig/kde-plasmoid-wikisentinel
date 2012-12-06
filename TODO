@@ -27,6 +27,6 @@
 * more flexible archive (keep not read items? ecc?)
 * make web preview dialog window more easily drag-able? (but redraw issue)
 * about the remove animation in item list: use PlasmaExtras.DisappearAnimation when it will work (is this the current issue? https://git.reviewboard.kde.org/r/106818/)
-* if in the panel, close the plasmoid when the user open the page in the browser
+* close the preview dialog when the user open the page in the browser
 * download the po file and open it to start translating as alternative action?
 * ...

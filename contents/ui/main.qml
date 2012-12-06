@@ -52,16 +52,18 @@ Item {
         
         engine: "rss"
         interval: updateInterval * 3600000 // in hours
-        connectedSources: [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
+        //connectedSources: [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
         
         onDataChanged: {
-            plasmoid.busy = false;
             print("Data changed");
+            print("--------------------------------");
             updateDataList();
+            plasmoid.busy = false;
         }
         
         onNewData: {
             print("New data: " + wikiSource.connectedSources[0]);
+            print("--------------------------------");
             
             var DBTime;
             var DBTitle;
@@ -141,8 +143,9 @@ Item {
             plasmoid.busy = false;
         }
         
-        onSourcesChanged: {
-            print("Source changed: " + wikiSource.connectedSources[0]);
+        onSourceConnected: {
+            print("Source connected: " + wikiSource.connectedSources[0]);
+            print("--------------------------------");
             plasmoid.busy = true;
         }
     }
@@ -167,6 +170,7 @@ Item {
             sourceWiki = "UserBase";
             sourceWikiBaseUrl = "http://userbase.kde.org";
         }
+        wikiSource.connectedSources = [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
         
         languageCode = plasmoid.readConfig("language");
         if (languageCode == "") { // if is the first execution (or a issue to correct)
@@ -264,6 +268,7 @@ Item {
             
             model: dataList
             delegate: singleItemComponent
+            //highlight: PlasmaComponents.Highlight {}
         }
     }
     
@@ -326,7 +331,7 @@ Item {
                 
                 onExited: { itemDelete.opacity=0; }
                 
-                onClicked: {                   
+                onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
                     itemName.text = title; //no more bold page name because it's read
                                       
@@ -354,7 +359,7 @@ Item {
                     diffDialog.x = pos.x;
                     diffDialog.y = pos.y;
                     
-                    diffDialog.windowFlags = 0x00040000; //Qt::WindowStaysOnTopHint
+                    diffDialog.windowFlags = Qt.Popup; //Qt::WindowStaysOnTopHint
                     
                     diffDialog.visible = true;
                 }

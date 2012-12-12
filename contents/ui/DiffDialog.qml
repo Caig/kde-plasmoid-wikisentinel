@@ -33,19 +33,17 @@ PlasmaCore.Dialog {
     property string diffUrl
     property bool loading
     
-    Keys.onEscapePressed: {
-        dialogWebView.html = ""; // to avoid redraw issue        
+    Keys.onEscapePressed: {   
         dialog.visible = false;
     } //doesn't work...focus issue?
     
     onDiffUrlChanged: {
-        print("diffurl: " + diffUrl);
+        //print("diffurl: " + diffUrl);
+        
         if (diffUrl == "Error") {
             //errorImage.visible = true;
             errorLabel.visible = true;
             dialogOpenUrl.visible = false;
-            
-            loading = false;  
         }
         else {
             scroll.visible = true;
@@ -60,6 +58,8 @@ PlasmaCore.Dialog {
                     dialogWebView.html = diff;
                 } );
         }
+        
+        loading = false;
     }
     
     mainItem: Item {
@@ -92,9 +92,7 @@ PlasmaCore.Dialog {
                 onEntered: { dialogOpenUrl.opacity=1; }
                 onExited: { dialogOpenUrl.opacity=0.7; }
                 onClicked: {
-                    plasmoid.openUrl(diffUrl);
-                    //dialog.destroy();
-                    dialogWebView.html = ""; // to avoid redraw issue                    
+                    plasmoid.openUrl(diffUrl);              
                     dialog.visible = false;
                 }
             }
@@ -137,8 +135,7 @@ PlasmaCore.Dialog {
                 
                 onEntered: { dialogDelete.opacity=1; }
                 onExited: { dialogDelete.opacity=0.7; }
-                onClicked: { 
-                    dialogWebView.html = ""; // to avoid redraw issue
+                onClicked: {
                     dialog.visible = false;                    
                 }
             }
@@ -199,11 +196,11 @@ PlasmaCore.Dialog {
                     //onLoadStarted: { busy.visible = loading; busy.running = loading; }
                     
                     onLoadFinished: {
-                        loading = false;
+                        //loading = false;
                         scrollable.contentY = 0; //to ensure the page is always visible from the top
                     }
                     onLoadFailed:{
-                        loading = false;
+                        //loading = false;
                         scrollable.contentY = 0;
                     }
                 }

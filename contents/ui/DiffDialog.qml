@@ -29,11 +29,14 @@ PlasmaCore.Dialog {
     id: dialog
     
     property alias title: dialogLabel.text
-    property alias html: dialogWebView.html
+    //property alias html: dialogWebView.html
     property string diffUrl
     property bool loading
     
-    Keys.onEscapePressed: { dialog.destroy(); } //doesn't work...
+    Keys.onEscapePressed: {
+        dialogWebView.html = ""; // to avoid redraw issue        
+        dialog.visible = false;
+    } //doesn't work...focus issue?
     
     onDiffUrlChanged: {
         print("diffurl: " + diffUrl);
@@ -45,7 +48,6 @@ PlasmaCore.Dialog {
             loading = false;  
         }
         else {
-            //scrollable.visible = true;
             scroll.visible = true;
             
             console.log("Get diff text:");
@@ -55,7 +57,7 @@ PlasmaCore.Dialog {
                     // use the better text color according to Plasma theme
                     diff = "<style type=\"text/css\">td.diff-otitle,td.diff-ntitle,td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}</style>" + diff;
                                     
-                    html = diff;
+                    dialogWebView.html = diff;
                 } );
         }
     }
@@ -88,12 +90,12 @@ PlasmaCore.Dialog {
                 hoverEnabled: true
                 
                 onEntered: { dialogOpenUrl.opacity=1; }
-                
                 onExited: { dialogOpenUrl.opacity=0.7; }
-                
                 onClicked: {
                     plasmoid.openUrl(diffUrl);
-                    dialog.destroy();       
+                    //dialog.destroy();
+                    dialogWebView.html = ""; // to avoid redraw issue                    
+                    dialog.visible = false;
                 }
             }
         }
@@ -134,10 +136,11 @@ PlasmaCore.Dialog {
                 hoverEnabled: true
                 
                 onEntered: { dialogDelete.opacity=1; }
-                
                 onExited: { dialogDelete.opacity=0.7; }
-                
-                onClicked: { dialog.destroy(); }
+                onClicked: { 
+                    dialogWebView.html = ""; // to avoid redraw issue
+                    dialog.visible = false;                    
+                }
             }
         }
                     
@@ -199,7 +202,6 @@ PlasmaCore.Dialog {
                         loading = false;
                         scrollable.contentY = 0; //to ensure the page is always visible from the top
                     }
-                    
                     onLoadFailed:{
                         loading = false;
                         scrollable.contentY = 0;

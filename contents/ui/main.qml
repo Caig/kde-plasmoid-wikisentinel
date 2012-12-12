@@ -217,6 +217,8 @@ Item {
     
     Locale.Locale { id:locale }
     
+    DiffDialog { id:diffDialog }
+        
     PlasmaComponents.Label {
         id: titleLabel
         
@@ -335,20 +337,14 @@ Item {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
                     itemName.text = title; //no more bold page name because it's read
                     
-                    var dialogTitle = title + " - " + i18n("Difference between revisions");
-                    
-                    var dialogWindowFlags = Qt.Popup;
-                    
-                    if (DiffDialog.status == Component.Ready) {
-                        var diffDialog = DiffDialog.createObject(parent, { title:dialogTitle, windowFlags:dialogWindowFlags });
-                    } else if (DiffDialog.status == Component.Error) {
-                        console.log("Error loading component:", DiffDialog.errorString());
-                    }
-                    
+                    diffDialog.title = title + " - " + i18n("Difference between revisions");
+                    diffDialog.windowFlags = Qt.Popup;
+
                     var pos = diffDialog.popupPosition(singleItem);
                     diffDialog.x = pos.x;
                     diffDialog.y = pos.y;
                     
+                    diffDialog.visible = true;
                     diffDialog.loading = true; //to activate the BusyIndicator
 
                     // retrieve the url of the wanted difference page to pass it to the preview dialog
@@ -360,12 +356,9 @@ Item {
                             if (diffUrl == "")
                                 diffUrl = "Error";
                                     
-                            diffDialog.diffUrl=diffUrl;
+                            diffDialog.diffUrl = diffUrl;
                         }
                     );
-                                      
-                    
-                    diffDialog.visible = true;
                 }
             }
             
@@ -415,6 +408,8 @@ Item {
     Component.onCompleted: {      
         plasmoid.aspectRatioMode = IgnoreAspectRatio; //to avoid fixed ratio on resizing
         
+        //maybe...if in the panel...use compact form...
+        
         plasmoid.popupIcon = "plasmapackage:/images/icon.png";
         
         plasmoid.passivePopup = true; //other windows can gain focus and the popup won't close
@@ -437,6 +432,6 @@ Item {
         
         //updateDataList(); //senza però non carica subito le voci
         
-        DiffDialog = Qt.createComponent("DiffDialog.qml");
+        //DiffDialog = Qt.createComponent("DiffDialog.qml");
     }
 }

@@ -2,7 +2,6 @@
 
 == Bug ==
 ** set language code to user language at first time -> doesn't work, for languages with more than 2 letters names
-** busy indicator running when offline (need to understand how to better use the data engine)
 ** some items don't load a preview (time issue(?))
 ** checkered board issue in webview (I think it's solved with newer versions of QtQuick I can't use)
 ** change of just language code doesn't update the plasmoid
@@ -16,16 +15,17 @@
 * fix text vertical alignement (title and time in list items)
 * better position for delete icon in list?
 * (fix daylight saving time issue - now works?)
+* user time of item vs server time of preview
 * ...
 
 == Improvements ==
 ** continue to clean the code according to guidelines
 ** split more code sections in new files to simplify main.qml
-* if there are more than one new item, show just a notification for them
+* if there are more than one new item, show just one notification
 * config option to enable/disable notifications
 * update at request (is useful?)
 * more flexible archive (keep not read items? ecc?)
-* make web preview dialog window more easily drag-able? (but redraw issue)
 * about the remove animation in item list: use PlasmaExtras.DisappearAnimation when it will work (is this the current issue? https://git.reviewboard.kde.org/r/106818/)
 * download the po file and open it to start translating as alternative action?
+* make web preview dialog window more easily drag-able? (but redraw issue)
 * ...

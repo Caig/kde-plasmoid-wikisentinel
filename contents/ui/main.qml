@@ -183,16 +183,6 @@ Item {
             languageCode = lang;
             plasmoid.writeConfig("language", languageCode);
         }
-        
-        /*
-        var a = locale.language;
-        
-        if (a.length > 2) {
-            a = a.toLowerCase();
-            a = a.replace("_", "-");
-        }
-        console.log("nuova: " + a);
-         */
 
         updateInterval = plasmoid.readConfig("updateInterval");
         

@@ -173,10 +173,26 @@ Item {
         wikiSource.connectedSources = [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
         
         languageCode = plasmoid.readConfig("language");
-        if (languageCode == "") { // if is the first execution (or a issue to correct)
-            languageCode = locale.country; // ... locale.countryDivisionCode ...
+        if (languageCode == "") { // if it's the first execution (or an issue to fix)
+            var lang = locale.language;
+            if (lang.length > 2) { // to adapt to the UserBase/TechBase language codes
+                lang = lang.toLowerCase();
+                lang = lang.replace("_", "-");
+            }
+            
+            languageCode = lang;
             plasmoid.writeConfig("language", languageCode);
         }
+        
+        /*
+        var a = locale.language;
+        
+        if (a.length > 2) {
+            a = a.toLowerCase();
+            a = a.replace("_", "-");
+        }
+        console.log("nuova: " + a);
+         */
 
         updateInterval = plasmoid.readConfig("updateInterval");
         

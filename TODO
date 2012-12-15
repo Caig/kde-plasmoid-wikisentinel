@@ -1,18 +1,17 @@
 ==== Todo ====
 
 == Bug ==
-** set language code to user language at first time -> doesn't work, for languages with more than 2 letters names
 ** some items don't load a preview (time issue(?))
 ** checkered board issue in webview (I think it's solved with newer versions of QtQuick I can't use)
 ** change of just language code doesn't update the plasmoid
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
 * handle offline state in webview
 * better language code configuration (list of languages?)
-* show the date & time according to user settings
 * the tooltip (for the icon in the panel) doesn't work
 * esc key doesn't close the web preview dialog window
 * fix config ui (is it possible to have more than one section?) and make translatable that strings (how?)
 * fix text vertical alignement (title and time in list items)
+* 3-character language codes not supported
 * better position for delete icon in list?
 * (fix daylight saving time issue - now works?)
 * user time of item vs server time of preview
@@ -22,6 +21,7 @@
 ** continue to clean the code according to guidelines
 ** split more code sections in new files to simplify main.qml
 * if there are more than one new item, show just one notification
+* show the date & time according to user settings
 * config option to enable/disable notifications
 * update at request (is useful?)
 * more flexible archive (keep not read items? ecc?)

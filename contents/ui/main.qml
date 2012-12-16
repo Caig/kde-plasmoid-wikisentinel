@@ -337,13 +337,17 @@ Item {
                 
                 onEntered: { itemDelete.opacity=0.7; }
                 
-                onExited: { itemDelete.opacity=0; }
+                onExited: { itemDelete.opacity=0.1; }
                 
                 onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
                     itemName.text = title; //no more bold page name because it's read
                     
                     diffDialog.title = title + " - " + i18n("Difference between revisions");
+                    
+                    var shortTitle = title.slice(0, title.lastIndexOf("/"));
+                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:UserLogin&returnto=Special:Translate&returntoquery=group=page-" + shortTitle + "&task=view&language=" + languageCode;
+                    
                     diffDialog.windowFlags = Qt.Popup;
 
                     var pos = diffDialog.popupPosition(singleItem);
@@ -351,18 +355,20 @@ Item {
                     diffDialog.y = pos.y;
                     
                     diffDialog.visible = true;
-                    diffDialog.loading = true; //to activate the BusyIndicator
+                    //diffDialog.loading = true; //to activate the BusyIndicator
 
-                    // retrieve the url of the wanted difference page to pass it to the preview dialog
-                    GetDataFromWiki.getDiffsList(
+                    GetDataFromWiki.getDiff(
                         sourceWikiBaseUrl,
                         title,
-                        Time.toDateDiff(time),
-                        function(diffUrl) {
-                            if (diffUrl == "")
-                                diffUrl = "Error";
-                                    
-                            diffDialog.diffUrl = diffUrl;
+                        time,
+                        function(data) {
+                            //if (data == "")
+                            //    data = "Error";
+                            
+                            // use the better text color according to Plasma theme and other fixes
+                            data = "<link rel=\"stylesheet\" href=\"" + "plasmapackage:/data/style.css" + "\" />" + "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}</style><table class=\"diff\">" + data + "</table";
+
+                            diffDialog.html = data;
                         }
                     );
                 }
@@ -378,7 +384,7 @@ Item {
                 width: parent.height
                 height: parent.height
                 
-                opacity: 0
+                opacity: 0.1
                 Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutQuad; } }
                 
                 svg: PlasmaCore.Svg { imagePath: "widgets/configuration-icons" }
@@ -391,7 +397,7 @@ Item {
                     
                     onEntered: { itemDelete.opacity=1; }
                     
-                    onExited: { itemDelete.opacity=0; }
+                    onExited: { itemDelete.opacity=0.1; }
                     
                     onClicked: {
                         console.log("Delete: " + title);
@@ -437,7 +443,5 @@ Item {
         Database.openDB();
         
         //updateDataList(); //senza però non carica subito le voci
-        
-        //DiffDialog = Qt.createComponent("DiffDialog.qml");
     }
 }

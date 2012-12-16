@@ -29,14 +29,15 @@ PlasmaCore.Dialog {
     id: dialog
     
     property alias title: dialogLabel.text
-    //property alias html: dialogWebView.html
-    property string diffUrl
+    property alias html: dialogWebView.html
+    property string url
     property bool loading
     
     Keys.onEscapePressed: {   
         dialog.visible = false;
     } //doesn't work...focus issue?
     
+    /*
     onDiffUrlChanged: {
         //print("diffurl: " + diffUrl);
         
@@ -61,6 +62,7 @@ PlasmaCore.Dialog {
         
         loading = false;
     }
+    */
     
     mainItem: Item {
         id: baseItem
@@ -92,7 +94,7 @@ PlasmaCore.Dialog {
                 onEntered: { dialogOpenUrl.opacity=1; }
                 onExited: { dialogOpenUrl.opacity=0.7; }
                 onClicked: {
-                    plasmoid.openUrl(diffUrl);              
+                    plasmoid.openUrl(url);              
                     dialog.visible = false;
                 }
             }
@@ -169,7 +171,7 @@ PlasmaCore.Dialog {
                 right: parent.right
             }
             
-            visible: false
+            visible: true //false
             
             Flickable {
             id: scrollable

@@ -18,6 +18,7 @@
 * ...
 
 == Improvements ==
+*** use the MediaWiki API
 ** continue to clean the code according to guidelines
 ** split more code sections in new files to simplify main.qml
 * if there are more than one new item, show just one notification

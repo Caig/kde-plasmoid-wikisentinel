@@ -36,6 +36,9 @@ PlasmaCore.Dialog {
         dialog.visible = false;
     } //doesn't work...focus issue?
     
+    onHtmlChanged: {
+        scrollable.contentY = 0; //to ensure the text is always visible from the beginning
+    }
     /*
     onDiffUrlChanged: {
         //print("diffurl: " + diffUrl);
@@ -173,6 +176,8 @@ PlasmaCore.Dialog {
             visible: true
             
             Flickable {
+                id: scrollable
+                
                 anchors.fill: parent
                 
                 //contentWidth: htmlText.width

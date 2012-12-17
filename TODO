@@ -1,6 +1,6 @@
 ==== Todo ====
 
-== Bug and wrong details ==
+== Bugs and wrong details ==
 ** some items don't load a preview (time issue(?))
 ** change of just language code doesn't update the plasmoid
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)

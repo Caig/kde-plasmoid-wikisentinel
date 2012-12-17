@@ -23,7 +23,7 @@ import org.kde.locale 0.1 as Locale
 import org.kde.plasma.core 0.1 as PlasmaCore
 import org.kde.plasma.extras 0.1 as PlasmaExtras
 import org.kde.plasma.components 0.1 as PlasmaComponents
-import "plasmapackage:/code/time.js" as Time
+import "plasmapackage:/code/utils.js" as Utils
 import "plasmapackage:/code/database.js" as Database
 import "plasmapackage:/code/getdatafromwiki.js" as GetDataFromWiki
 
@@ -311,7 +311,7 @@ Item {
                 
                 elide: Text.ElideRight
                 // bold if read==0 (not already clicked item)
-                text: (read==1)? title : "<b>" + title + "</b>"
+                text: (read==1)? Utils.toShortName(title) : "<b>" + Utils.toShortName(title) + "</b>"
             }
                 
             PlasmaComponents.Label {
@@ -328,7 +328,7 @@ Item {
                 elide: Text.ElideRight
                 font.pointSize: theme.smallestFont.pointSize
                 //color: "#99"+(theme.textColor.toString().substr(1))              
-                text: Time.toDate(time)
+                text: Utils.toDate(time)
             }
 
             MouseArea {
@@ -342,12 +342,11 @@ Item {
                 
                 onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
-                    itemName.text = title; //no more bold page name because it's read
+                    itemName.text = Utils.toShortName(title); //no more bold page name because it's read
                     
-                    diffDialog.title = title + " - " + i18n("Difference between revisions");
+                    diffDialog.title = Utils.toShortName(title) + " - " + i18n("Difference between revisions");
                     
-                    var shortTitle = title.slice(0, title.lastIndexOf("/"));
-                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:UserLogin&returnto=Special:Translate&returntoquery=group=page-" + shortTitle + "&task=view&language=" + languageCode;
+                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:UserLogin&returnto=Special:Translate&returntoquery=group=page-" + Utils.toShortName(title) + "&task=view&language=" + languageCode;
                     
                     diffDialog.windowFlags = Qt.Popup;
 

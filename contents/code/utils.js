@@ -34,3 +34,9 @@ function toDate(timestamp) {
     
     return date.toLocaleDateString() + ' - ' + hours + ':' + minutes;
 }
+
+function toShortName(title) {
+    var shortName = title.slice(0, title.lastIndexOf("/"));
+    
+    return shortName;
+}

@@ -34,24 +34,3 @@ function toDate(timestamp) {
     
     return date.toLocaleDateString() + ' - ' + hours + ':' + minutes;
 }
-
-function toDateDiff(timestamp) {
-    var date = new Date(timestamp * 1000); // * 1000 because milliseconds needed
-
-    var hours = (date.getUTCHours()).toString();
-    var minutes = date.getMinutes().toString();
-
-    var day = date.getUTCDate().toString();
-    var monthsNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-    var month = monthsNames[date.getMonth()];
-    var year = date.getFullYear().toString();
-    
-    //to convert time values like '1:0' to '01:00' ...
-    if (hours.length == 1)
-        hours = "0" + hours;
-    
-    if (minutes.length == 1)
-        minutes = "0" + minutes;
-    
-    return hours + ':' + minutes + ', ' + day + ' ' + month + ' ' + year;
-}

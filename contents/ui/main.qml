@@ -307,6 +307,7 @@ Item {
                 id: itemName
                 
                 anchors.left: parent.left
+                //right or width to set
                 
                 elide: Text.ElideRight
                 // bold if read==0 (not already clicked item)
@@ -366,7 +367,11 @@ Item {
                             //    data = "Error";
                             
                             // use the better text color according to Plasma theme and other fixes
-                            data = "<link rel=\"stylesheet\" href=\"" + "plasmapackage:/data/style.css" + "\" />" + "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}</style><table class=\"diff\">" + data + "</table";
+                            // can't use an external css stylesheet
+                            
+                            var style = "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}td.diff-lineno{font-weight:bold}td.diff-addedline{background-color:#CCFFCC;}td.diff-deletedline{background-color:#ffa;}.diffchange{color:red;font-weight:bold;text-decoration:none}</style>";
+                            
+                            data = "<html>" + style + "<table class=\"diff\">" + data + "</table></html>";
 
                             diffDialog.html = data;
                         }

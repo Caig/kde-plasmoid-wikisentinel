@@ -2,11 +2,8 @@
 
 == Bug and wrong details ==
 ** some items don't load a preview (time issue(?))
-** redraw issue in preview
-** checkered board issue in webview (I think it's solved with newer versions of QtQuick I can't use)
 ** change of just language code doesn't update the plasmoid
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
-* some html difference previews are larger than the dialog
 * handle offline/loading state in webview
 * better language code configuration (list of languages?)
 * the tooltip (for the icon in the panel) doesn't work
@@ -28,5 +25,5 @@
 * more flexible archive (keep not read items? ecc?)
 * about the remove animation in item list: use PlasmaExtras.DisappearAnimation when it will work (is this the current issue? https://git.reviewboard.kde.org/r/106818/)
 * download the po file and open it to start translating as alternative action?
-* make web preview dialog window more easily drag-able? (but redraw issue)
+* html preview dialog window resizeable?
 * ...

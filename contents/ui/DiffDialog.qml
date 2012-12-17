@@ -19,7 +19,6 @@
  */
 
 import QtQuick 1.1
-import QtWebKit 1.1
 import org.kde.plasma.core 0.1 as PlasmaCore
 import org.kde.plasma.extras 0.1 as PlasmaExtras
 import org.kde.plasma.components 0.1 as PlasmaComponents
@@ -29,7 +28,7 @@ PlasmaCore.Dialog {
     id: dialog
     
     property alias title: dialogLabel.text
-    property alias html: dialogWebView.html
+    property alias html: htmlText.text
     property string url
     property bool loading
     
@@ -171,41 +170,27 @@ PlasmaCore.Dialog {
                 right: parent.right
             }
             
-            visible: true //false
+            visible: true
             
             Flickable {
-            id: scrollable
-            
-            anchors.fill: scroll
-                  
-            contentHeight: dialogWebView.height
-            
-            flickableDirection: Flickable.VerticalFlick
-            clip: true
+                anchors.fill: parent
                 
-                WebView {
-                    id: dialogWebView
+                //contentWidth: htmlText.width
+                contentHeight: htmlText.height
+                
+                flickableDirection: Flickable.VerticalFlick
+                
+                clip: true
+                
+                Text {
+                    id: htmlText
                     
-                    //anchors.fill: parent //no per evitare problemi disegno barra
+                    anchors.left: parent.left
+                    anchors.right: parent.right
                     
-                    preferredHeight: 300
-                    preferredWidth: baseItem.width
-
-                    backgroundColor: "transparent"
-                    settings.standardFontFamily: theme.desktopFont.family
-                    settings.defaultFontSize: 11 // theme.desktopFont.pointSize
-                    
-                    //onLoadStarted: { busy.visible = loading; busy.running = loading; }
-                    
-                    onLoadFinished: {
-                        //loading = false;
-                        scrollable.contentY = 0; //to ensure the page is always visible from the top
-                    }
-                    onLoadFailed:{
-                        //loading = false;
-                        scrollable.contentY = 0;
-                    }
-                }
+                    wrapMode: Text.Wrap
+                    textFormat: Text.RichText
+                }  
             }
         }
         

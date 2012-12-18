@@ -87,7 +87,7 @@ Item {
                         console.log("Added: " + DBWiki + " - " + DBRead + " - " + DBTime + " - " + DBTitle + " - " + DBLink);
                         Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
                         updatatedDB = true;
-                        sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), DBTitle);
+                        sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), Utils.toShortName(DBTitle));
                     }
                     else {
                         console.log("No new translation to update.");
@@ -175,7 +175,7 @@ Item {
         languageCode = plasmoid.readConfig("language");
         if (languageCode == "") { // if it's the first execution (or an issue to fix)
             var lang = locale.language;
-            if (lang.length > 2) { // to adapt to the UserBase/TechBase language codes
+            if (lang.length > 2) { // to convert to the UserBase/TechBase language codes
                 lang = lang.toLowerCase();
                 lang = lang.replace("_", "-");
             }
@@ -306,12 +306,16 @@ Item {
             PlasmaComponents.Label {
                 id: itemName
                 
-                anchors.left: parent.left
-                //right or width to set
+                anchors {
+                    left: parent.left
+                    right: itemTime.left
+                    rightMargin: 5
+                }
                 
-                elide: Text.ElideRight
                 // bold if read==0 (not already clicked item)
                 text: (read==1)? Utils.toShortName(title) : "<b>" + Utils.toShortName(title) + "</b>"
+                elide: Text.ElideRight
+                clip: true // ugly, but elide doesn't support rich text (bold) https://bugreports.qt-project.org/browse/QTBUG-16567
             }
                 
             PlasmaComponents.Label {
@@ -320,12 +324,10 @@ Item {
                 anchors {
                     right: itemDelete.left
                     rightMargin: 5
-                    left: itemName.right
-                    leftMargin: 5
                 }
                 
-                horizontalAlignment: Text.AlignRight
-                elide: Text.ElideRight
+                //horizontalAlignment: Text.AlignRight
+                //elide: Text.ElideRight
                 font.pointSize: theme.smallestFont.pointSize
                 //color: "#99"+(theme.textColor.toString().substr(1))              
                 text: Utils.toDate(time)
@@ -385,6 +387,7 @@ Item {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
                 }
+                
                 width: parent.height
                 height: parent.height
                 
@@ -407,6 +410,8 @@ Item {
                         console.log("Delete: " + title);
                         Database.updateItemInDB(sourceWiki, time, "hidden"); //the item isn't deleted because its time can be useful to know what pages from the feed are new...
                         dataList.remove(index);
+                        if (dataList.count == 0)
+                            messageLabel.visible = true;
                     }
                 }
             }
@@ -430,7 +435,6 @@ Item {
         
         plasmoid.passivePopup = true; //other windows can gain focus and the popup won't close
         
-        /* doesn't work...
         if (plasmoid.formFactor == Horizontal || plasmoid.formFactor == Vertical) {
             var toolTipData = new Object;
             //toolTipData["image"] = "icon.png";
@@ -438,7 +442,6 @@ Item {
             toolTipData["subText"] = i18n("ToolTip descriptive sub text");
             plasmoid.popupIconToolTip = toolTipData;
         }
-        */
         
         plasmoid.addEventListener('ConfigChanged', configChanged);
         

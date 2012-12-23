@@ -52,12 +52,35 @@ Item {
         
         engine: "rss"
         interval: updateInterval * 3600000 // in hours
-        //connectedSources: [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
+        
+        onSourceAdded: {
+            print("Source added: " + wikiSource.sources[0]);
+            print("--------------------------------");
+            plasmoid.busy = true;
+            updateDataList();
+        }
+        
+        onSourceRemoved: {
+            print("Source removed";
+            print("--------------------------------");
+        }
+        
+        onSourceConnected: {
+            print("Source connected: " + wikiSource.connectedSources[0]);
+            print("--------------------------------");
+            //plasmoid.busy = true;
+        }
+        
+        onSourcesChanged: {
+            print("Source changed: " + wikiSource.connectedSources[0]);
+            print("--------------------------------");
+            //updateDataList();
+        }
         
         onDataChanged: {
             print("Data changed");
             print("--------------------------------");
-            updateDataList();
+            //updateDataList();
             plasmoid.busy = false;
         }
         
@@ -142,12 +165,6 @@ Item {
                         
             plasmoid.busy = false;
         }
-        
-        onSourceConnected: {
-            print("Source connected: " + wikiSource.connectedSources[0]);
-            print("--------------------------------");
-            plasmoid.busy = true;
-        }
     }
     
     PlasmaCore.DataSource {
@@ -158,6 +175,8 @@ Item {
     
     function configChanged() {
         //problema se più di un plasmoide x accesso a database?!
+        
+        wikiSource.disconnectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
         
         sourceWiki = plasmoid.readConfig("wiki");
         if (sourceWiki == 0) {
@@ -170,7 +189,9 @@ Item {
             sourceWiki = "UserBase";
             sourceWikiBaseUrl = "http://userbase.kde.org";
         }
-        wikiSource.connectedSources = [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
+        
+        //wikiSource.connectedSources = [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
+        wikiSource.connectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
         
         languageCode = plasmoid.readConfig("language");
         if (languageCode == "") { // if it's the first execution (or an issue to fix)
@@ -448,7 +469,5 @@ Item {
         plasmoid.busy = true;
         
         Database.openDB();
-        
-        //updateDataList(); //senza però non carica subito le voci
     }
 }

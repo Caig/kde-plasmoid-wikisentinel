@@ -1,10 +1,9 @@
 ==== Todo ====
 
 == Bugs and wrong details ==
-** change of just language code doesn't update the plasmoid
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
 * the tooltip (for the icon in the panel) doesn't work
-* esc key doesn't close the preview dialog window
+* esc key doesn't close the preview dialog window (focus issue)
 * fix text vertical alignement (title and time in list items)
 * eliding of bold text for page name not working (https://bugreports.qt-project.org/browse/QTBUG-16567)
 * language automatic setting: 3-character language codes not supported

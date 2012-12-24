@@ -61,7 +61,7 @@ Item {
         }
         
         onSourceRemoved: {
-            print("Source removed";
+            print("Source removed");
             print("--------------------------------");
         }
         

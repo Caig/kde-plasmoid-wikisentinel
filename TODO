@@ -2,16 +2,16 @@
 
 == Bugs and wrong details ==
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
-* the tooltip (for the icon in the panel) doesn't work
-* esc key doesn't close the preview dialog window (focus issue)
-* fix text vertical alignement (title and time in list items)
-* eliding of bold text for page name not working (https://bugreports.qt-project.org/browse/QTBUG-16567)
 * language automatic setting: 3-character language codes not supported
+* the tooltip (for the icon in the panel) doesn't work
+* eliding of bold text for page name not working, forced to clip (https://bugreports.qt-project.org/browse/QTBUG-16567)
+* fix text vertical alignement (title and time in list items)
 * (fix daylight saving time issue - now works?)
 * ...
 
 == Improvements ==
 ** continue to clean the code according to guidelines
+* esc key doesn't close the preview dialog window (focus issue)
 * if there are more than one new item, show just one notification
 * better config ui (is it possible to have more than one section?) and make translatable that strings (how?)
 * show the date & time according to user settings
@@ -23,4 +23,5 @@
 * about the remove animation in item list: use PlasmaExtras.DisappearAnimation when it will work (is this the current issue? https://git.reviewboard.kde.org/r/106818/)
 * download the po file and open it to start translating as alternative action?
 * preview dialog window resizeable?
+* org.kde.servicestorage ?
 * ...

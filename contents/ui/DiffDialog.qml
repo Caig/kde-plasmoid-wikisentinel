@@ -72,6 +72,8 @@ PlasmaCore.Dialog {
         width: 520
         height: 300
         
+        focus: true
+        
         PlasmaCore.SvgItem {
             id: dialogOpenUrl
             

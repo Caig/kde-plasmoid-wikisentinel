@@ -56,8 +56,8 @@ Item {
         onSourceAdded: {
             print("Source added: " + wikiSource.sources[0]);
             print("--------------------------------");
-            plasmoid.busy = true;
-            updateDataList();
+            //plasmoid.busy = true;
+            loadDataList();
         }
         
         onSourceRemoved: {
@@ -74,13 +74,11 @@ Item {
         onSourcesChanged: {
             print("Source changed: " + wikiSource.connectedSources[0]);
             print("--------------------------------");
-            //updateDataList();
         }
         
         onDataChanged: {
             print("Data changed");
             print("--------------------------------");
-            //updateDataList();
             plasmoid.busy = false;
         }
         
@@ -94,7 +92,7 @@ Item {
             var DBWiki = sourceWiki;
             var DBRead = 0;
             
-            var updatatedDB = false; //to know if we need to update the dataList (and so the pages list)
+            //var updatatedDB = false; //to know if we need to update the dataList (and so the pages list)
 
             latestTimeInDB = Database.getLatestTimeInDB(sourceWiki);
 
@@ -109,7 +107,9 @@ Item {
                     if (DBTime > latestTimeInDB) { //if is a new item not in database...
                         console.log("Added: " + DBWiki + " - " + DBRead + " - " + DBTime + " - " + DBTitle + " - " + DBLink);
                         Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
-                        updatatedDB = true;
+                        //updatatedDB = true;
+                        dataList.insert(0, {"wiki": DBWiki, "read": DBRead, "time": DBTime, "title": DBTitle, "link": DBLink});
+                        
                         sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), Utils.toShortName(DBTitle));
                     }
                     else {
@@ -131,7 +131,8 @@ Item {
                     
                     for (var i=0; i<db.length; i++) {
                         Database.deleteItemFromDB(sourceWiki, db[i]);
-                        updatatedDB = true;
+                        dataList.remove(dataList.count-1); // remove last item
+                        //updatatedDB = true;
                     }
                     
                     console.log("...deletion done.");
@@ -152,16 +153,18 @@ Item {
                     
                     for (var i=0; i<db.length; i++) {
                         Database.deleteItemFromDB(sourceWiki, db[i]);
-                        updatatedDB = true;
+                        dataList.remove(dataList.count-1); // remove last item
+                        //updatatedDB = true;
                     }
                     
                     console.log("...deletion done.");               
                 }    
             }
             
-            if (updatatedDB == true) {
-                updateDataList();
-            }
+            if (dataList.count == 0)
+                messageLabel.visible = true;
+            else
+                messageLabel.visible = false;
                         
             plasmoid.busy = false;
         }
@@ -175,23 +178,6 @@ Item {
     
     function configChanged() {
         //problema se più di un plasmoide x accesso a database?!
-        
-        wikiSource.disconnectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
-        
-        sourceWiki = plasmoid.readConfig("wiki");
-        if (sourceWiki == 0) {
-            sourceWiki = "UserBase";
-            sourceWikiBaseUrl = "http://userbase.kde.org";
-        } else if (sourceWiki == 1) {
-            sourceWiki = "TechBase";
-            sourceWikiBaseUrl = "http://techbase.kde.org";
-        } else { //to avoid problems with wrong settings (manual change of the file, ecc)
-            sourceWiki = "UserBase";
-            sourceWikiBaseUrl = "http://userbase.kde.org";
-        }
-        
-        //wikiSource.connectedSources = [sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom"]
-        wikiSource.connectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
         
         languageCode = plasmoid.readConfig("language");
         if (languageCode == "") { // if it's the first execution (or an issue to fix)
@@ -212,10 +198,26 @@ Item {
         
         keepForDays = plasmoid.readConfig("keepForDays");
         keepForDaysNumber = plasmoid.readConfig("keepForDaysNumber");
+        
+        wikiSource.disconnectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
+        
+        sourceWiki = plasmoid.readConfig("wiki");
+        if (sourceWiki == 0) {
+            sourceWiki = "UserBase";
+            sourceWikiBaseUrl = "http://userbase.kde.org";
+        } else if (sourceWiki == 1) {
+            sourceWiki = "TechBase";
+            sourceWikiBaseUrl = "http://techbase.kde.org";
+        } else { //to avoid problems with wrong settings (manual change of the file, ecc)
+            sourceWiki = "UserBase";
+            sourceWikiBaseUrl = "http://userbase.kde.org";
+        }
+        
+        wikiSource.connectSource(sourceWikiBaseUrl + "/api.php?action=feedcontributions&user=FuzzyBot&feedformat=atom");
     }
     
-    function updateDataList() {
-        dataList.clear(); // clear the list to update it
+    function loadDataList() {
+        dataList.clear(); // clear the list (for source wiki change)
         
         var db = Database.readDB(sourceWiki);
 

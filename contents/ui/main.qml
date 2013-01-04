@@ -56,7 +56,6 @@ Item {
         onSourceAdded: {
             print("Source added: " + wikiSource.sources[0]);
             print("--------------------------------");
-            //plasmoid.busy = true;
             loadDataList();
         }
         
@@ -65,108 +64,119 @@ Item {
             print("--------------------------------");
         }
         
+        /*
         onSourceConnected: {
             print("Source connected: " + wikiSource.connectedSources[0]);
             print("--------------------------------");
             //plasmoid.busy = true;
         }
+        */
         
+        /*
         onSourcesChanged: {
             print("Source changed: " + wikiSource.connectedSources[0]);
             print("--------------------------------");
         }
+        */
         
+        /*
         onDataChanged: {
             print("Data changed");
             print("--------------------------------");
-            plasmoid.busy = false;
+            //plasmoid.busy = true;
         }
+        */
         
         onNewData: {
             print("New data: " + wikiSource.connectedSources[0]);
             print("--------------------------------");
-            
+           
             var DBTime;
             var DBTitle;
             var DBLink;
             var DBWiki = sourceWiki;
             var DBRead = 0;
-            
-            //var updatatedDB = false; //to know if we need to update the dataList (and so the pages list)
 
             latestTimeInDB = Database.getLatestTimeInDB(sourceWiki);
-
-            for (var i=0; i<data["items"].length; i++) {
-                DBTime = data["items"][i]["time"];
-                DBTitle = data["items"][i]["title"];
-                DBLink = data["items"][i]["link"];
-                    
-                var lang = DBTitle.slice(DBTitle.lastIndexOf('/') - DBTitle.length);
-                
-                if (lang == '/' + languageCode) { // if the item is in the wanted language...
-                    if (DBTime > latestTimeInDB) { //if is a new item not in database...
-                        console.log("Added: " + DBWiki + " - " + DBRead + " - " + DBTime + " - " + DBTitle + " - " + DBLink);
-                        Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
-                        //updatatedDB = true;
-                        dataList.insert(0, {"wiki": DBWiki, "read": DBRead, "time": DBTime, "title": DBTitle, "link": DBLink});
-                        
-                        sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), Utils.toShortName(DBTitle));
-                    }
-                    else {
-                        console.log("No new translation to update.");
-                        break;
-                    }
-                }
-            }
             
-            if (keepMaxItems == true)
-            {
-                var numberItemsToDelete = Database.countItemsInDB(sourceWiki) - keepMaxItemsNumber;
-                
-                if (numberItemsToDelete > 0)
-                {
-                    console.log("There are " + numberItemsToDelete + " excess items to delete...");
-                    
-                    var db = Database.readExcessItemsInDB(sourceWiki, numberItemsToDelete);
-                    
-                    for (var i=0; i<db.length; i++) {
-                        Database.deleteItemFromDB(sourceWiki, db[i]);
-                        dataList.remove(dataList.count-1); // remove last item
-                        //updatatedDB = true;
-                    }
-                    
-                    console.log("...deletion done.");
-                }
+            if (data["items"] == undefined) {
+                console.log("Undefined data");
+                plasmoid.busy = false;
             }
-            
-            if (keepForDays == true)
-            {                
-                var previousDay = new Date();
-                previousDay.setDate(previousDay.getDate() - keepForDaysNumber); // go in the past...javascript does all the dirty things (it changes month or year if needed)
-                
-                var db = Database.readOlderItemsInDB(sourceWiki, previousDay.getTime()/1000);
-                //previousDay.getTime()/1000 is the timestamp (in the same format the atom feed provides)
-                
-                if (db.length > 0)
-                {
-                    console.log("There are " + db.length + " old items to delete...");
-                    
-                    for (var i=0; i<db.length; i++) {
-                        Database.deleteItemFromDB(sourceWiki, db[i]);
-                        dataList.remove(dataList.count-1); // remove last item
-                        //updatatedDB = true;
-                    }
-                    
-                    console.log("...deletion done.");               
-                }    
-            }
-            
-            if (dataList.count == 0)
-                messageLabel.visible = true;
             else
-                messageLabel.visible = false;
+            {
+                //plasmoid.busy = true;
+                for (var i=0; i<data["items"].length; i++) {
+                    DBTime = data["items"][i]["time"];
+                    DBTitle = data["items"][i]["title"];
+                    DBLink = data["items"][i]["link"];
                         
-            plasmoid.busy = false;
+                    var lang = DBTitle.slice(DBTitle.lastIndexOf('/') - DBTitle.length);
+                    
+                    if (lang == '/' + languageCode) { // if the item is in the wanted language...
+                        if (DBTime > latestTimeInDB) { //if is a new item not in database...
+                            console.log("Added: " + DBWiki + " - " + DBRead + " - " + DBTime + " - " + DBTitle + " - " + DBLink);
+                            Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
+                            dataList.insert(0, {"wiki": DBWiki, "read": DBRead, "time": DBTime, "title": DBTitle, "link": DBLink});
+                            
+                            sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), Utils.toShortName(DBTitle));
+                        }
+                        else {
+                            console.log("No new translation to update.");
+                            break;
+                        }
+                    }
+                }
+                
+                if (keepMaxItems == true)
+                {
+                    var numberItemsToDelete = Database.countItemsInDB(sourceWiki) - keepMaxItemsNumber;
+                    
+                    if (numberItemsToDelete > 0)
+                    {
+                        console.log("There are " + numberItemsToDelete + " excess items to delete...");
+                        
+                        var db = Database.readExcessItemsInDB(sourceWiki, numberItemsToDelete);
+                        
+                        for (var i=0; i<db.length; i++) {
+                            Database.deleteItemFromDB(sourceWiki, db[i]);
+                            dataList.remove(dataList.count-1); // remove last item
+                        }
+                        
+                        console.log("...deletion done.");
+                    }
+                }
+                
+                if (keepForDays == true)
+                {                
+                    var previousDay = new Date();
+                    previousDay.setDate(previousDay.getDate() - keepForDaysNumber); // go in the past...javascript does all the dirty things (it changes month or year if needed)
+                    
+                    var db = Database.readOlderItemsInDB(sourceWiki, previousDay.getTime()/1000);
+                    //previousDay.getTime()/1000 is the timestamp (in the same format the atom feed provides)
+                    
+                    if (db.length > 0)
+                    {
+                        console.log("There are " + db.length + " old items to delete...");
+                        
+                        for (var i=0; i<db.length; i++) {
+                            Database.deleteItemFromDB(sourceWiki, db[i]);
+                            dataList.remove(dataList.count-1); // remove last item
+                        }
+                        
+                        console.log("...deletion done.");               
+                    }    
+                }
+                
+                plasmoid.busy = false
+                
+                if (dataList.count == 0)
+                    messageLabel.visible = true;
+                else
+                    messageLabel.visible = false;
+            }
+            
+            //plasmoid.busy = false;
         }
     }
     
@@ -380,24 +390,28 @@ Item {
                     diffDialog.y = pos.y;
                     
                     diffDialog.visible = true;
-                    //diffDialog.loading = true; //to activate the BusyIndicator
+                    diffDialog.loading = true; //to activate the BusyIndicator
 
                     GetDataFromWiki.getDiff(
                         sourceWikiBaseUrl,
                         title,
                         time,
                         function(data) {
-                            //if (data == "")
-                            //    data = "Error";
-                            
-                            // use the better text color according to Plasma theme and other fixes
-                            // can't use an external css stylesheet
-                            
-                            var style = "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}td.diff-lineno{font-weight:bold}td.diff-addedline{background-color:#CCFFCC;}td.diff-deletedline{background-color:#ffa;}.diffchange{color:red;font-weight:bold;text-decoration:none}</style>";
-                            
-                            data = "<html>" + style + "<table class=\"diff\">" + data + "</table></html>";
-
-                            diffDialog.html = data;
+                            if (data == "Error") {
+                                diffDialog.html = "";
+                                diffDialog.error = true;
+                                diffDialog.loading = false;
+                            }
+                            else {                          
+                                // Use the better text color according to Plasma theme and other fixes.
+                                // Can't use an external css stylesheet.
+                                    
+                                var style = "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}td.diff-lineno{font-weight:bold}td.diff-addedline{background-color:#CCFFCC;}td.diff-deletedline{background-color:#ffa;}.diffchange{color:red;font-weight:bold;text-decoration:none}</style>";
+                                    
+                                data = "<html>" + style + "<table class=\"diff\">" + data + "</table></html>";
+                                
+                                diffDialog.html = data;
+                            }
                         }
                     );
                 }

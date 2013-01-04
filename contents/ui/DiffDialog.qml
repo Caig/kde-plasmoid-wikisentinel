@@ -31,40 +31,17 @@ PlasmaCore.Dialog {
     property alias html: htmlText.text
     property string url
     property bool loading
+    property bool error
     
     Keys.onEscapePressed: {   
         dialog.visible = false;
+        //event.accepted = true;
     } //doesn't work...focus issue?
     
     onHtmlChanged: {
-        scrollable.contentY = 0; //to ensure the text is always visible from the beginning
+        scrollable.contentY = 0; // to ensure the text is always visible from the beginning
+        loading = false; // because received something
     }
-    /*
-    onDiffUrlChanged: {
-        //print("diffurl: " + diffUrl);
-        
-        if (diffUrl == "Error") {
-            //errorImage.visible = true;
-            errorLabel.visible = true;
-            dialogOpenUrl.visible = false;
-        }
-        else {
-            scroll.visible = true;
-            
-            console.log("Get diff text:");
-            
-            GetDataFromWiki.getDiff(diffUrl,
-                function(diff) {
-                    // use the better text color according to Plasma theme
-                    diff = "<style type=\"text/css\">td.diff-otitle,td.diff-ntitle,td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}</style>" + diff;
-                                    
-                    dialogWebView.html = diff;
-                } );
-        }
-        
-        loading = false;
-    }
-    */
     
     mainItem: Item {
         id: baseItem
@@ -100,6 +77,8 @@ PlasmaCore.Dialog {
                 onClicked: {
                     plasmoid.openUrl(url);              
                     dialog.visible = false;
+                    html = "";
+                    error = false;
                 }
             }
         }
@@ -142,7 +121,9 @@ PlasmaCore.Dialog {
                 onEntered: { dialogDelete.opacity=1; }
                 onExited: { dialogDelete.opacity=0.7; }
                 onClicked: {
-                    dialog.visible = false;                    
+                    dialog.visible = false;
+                    html = "";
+                    error = false;
                 }
             }
         }
@@ -227,11 +208,11 @@ PlasmaCore.Dialog {
             anchors.verticalCenter: parent.verticalCenter
             width: parent.width
             
-            visible: false
+            visible: error
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             text: i18n("Sorry, an error occurred. Try to open the page in your browser.")
         }
-        //pulsante per aprire pagina base?
+        //button to open diff page?
     }
 }

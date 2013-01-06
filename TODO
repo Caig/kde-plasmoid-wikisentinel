@@ -2,7 +2,7 @@
 
 == Bugs and wrong details ==
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
-* language automatic setting: 3-character language codes not supported
+* language automatic setting: 3-character language codes not supported (ksh-Ripoarisch, rue-русиньскый)
 * the tooltip (for the icon in the panel) doesn't work
 * fix text vertical alignement (title and time in list items)
 * (fix daylight saving time issue - now works?)

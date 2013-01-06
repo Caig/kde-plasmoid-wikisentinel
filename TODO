@@ -11,7 +11,6 @@
 == Improvements ==
 ** continue to clean the code according to guidelines
 * esc key doesn't close the preview dialog window (focus issue)
-* if there are more than one new item, show just one notification
 * better config ui (is it possible to have more than one section?) and make translatable that strings (how?)
 * show the date & time according to user settings
 * better language code configuration (list of languages?)

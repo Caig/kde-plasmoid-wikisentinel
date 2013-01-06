@@ -105,7 +105,8 @@ Item {
             }
             else
             {
-                //plasmoid.busy = true;
+                var newPages = ""; // to build a notification body if needed
+                
                 for (var i=0; i<data["items"].length; i++) {
                     DBTime = data["items"][i]["time"];
                     DBTitle = data["items"][i]["title"];
@@ -119,7 +120,7 @@ Item {
                             Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
                             dataList.insert(0, {"wiki": DBWiki, "read": DBRead, "time": DBTime, "title": DBTitle, "link": DBLink});
                             
-                            sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), Utils.toShortName(DBTitle));
+                            newPages += Utils.toShortName(DBTitle) + "\n";
                         }
                         else {
                             console.log("No new translation to update.");
@@ -127,6 +128,9 @@ Item {
                         }
                     }
                 }
+                
+                if (newPages != "")
+                    sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), newPages);
                 
                 if (keepMaxItems == true)
                 {
@@ -175,8 +179,6 @@ Item {
                 else
                     messageLabel.visible = false;
             }
-            
-            //plasmoid.busy = false;
         }
     }
     

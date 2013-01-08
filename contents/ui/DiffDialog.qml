@@ -40,7 +40,7 @@ PlasmaCore.Dialog {
     
     onHtmlChanged: {
         scrollable.contentY = 0; // to ensure the text is always visible from the beginning
-        loading = false; // because received something
+        //loading = false;
     }
     
     mainItem: Item {

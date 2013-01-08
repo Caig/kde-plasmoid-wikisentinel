@@ -359,10 +359,9 @@ Item {
                 anchors {
                     right: itemDelete.left
                     rightMargin: 5
+                    //baseline: itemName.baseline
                 }
                 
-                //horizontalAlignment: Text.AlignRight
-                //elide: Text.ElideRight
                 font.pointSize: theme.smallestFont.pointSize
                 //color: "#99"+(theme.textColor.toString().substr(1))              
                 text: Utils.toDate(time)
@@ -402,7 +401,6 @@ Item {
                             if (data == "Error") {
                                 diffDialog.html = "";
                                 diffDialog.error = true;
-                                diffDialog.loading = false;
                             }
                             else {                          
                                 // Use the better text color according to Plasma theme and other fixes.
@@ -414,6 +412,8 @@ Item {
                                 
                                 diffDialog.html = data;
                             }
+                            
+                            diffDialog.loading = false;
                         }
                     );
                 }

@@ -15,6 +15,7 @@
 * show the date & time according to user settings
 * better language code configuration (list of languages?)
 * config option to enable/disable notifications
+* avoid duplicated items in notifications
 * update at request (is useful?)
 * more flexible archive (keep not read items? ecc?)
 * download the po file and open it to start translating as alternative action?

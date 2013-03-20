@@ -476,9 +476,9 @@ Item {
         
         if (plasmoid.formFactor == Horizontal || plasmoid.formFactor == Vertical) {
             var toolTipData = new Object;
-            //toolTipData["image"] = "icon.png";
-            toolTipData["mainText"] = i18n("ToolTip title");
-            toolTipData["subText"] = i18n("ToolTip descriptive sub text");
+            toolTipData["image"] = plasmoid.file("images", "icon.png");
+            toolTipData["mainText"] = i18n("WikiSentinel");
+            toolTipData["subText"] = i18n("");
             plasmoid.popupIconToolTip = toolTipData;
         }
         

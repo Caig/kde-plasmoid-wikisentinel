@@ -51,7 +51,7 @@ PlasmaCore.Dialog {
         
         focus: true
         
-        PlasmaCore.SvgItem {
+        PlasmaComponents.ToolButton {
             id: dialogOpenUrl
             
             anchors {
@@ -61,27 +61,15 @@ PlasmaCore.Dialog {
             width: dialogLabel.height
             height: dialogLabel.height
             
-            opacity: 0.7
-            Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutQuad; } }
+            iconSource: "document-edit" //PlasmaCore.SvgItem: widgets/configuration-icons -> maximize ?
             
-            svg: PlasmaCore.Svg { imagePath: "widgets/configuration-icons" }
-            elementId: "maximize"
-                        
-            MouseArea {
-                anchors.fill: parent
-                
-                hoverEnabled: true
-                
-                onEntered: { dialogOpenUrl.opacity=1; }
-                onExited: { dialogOpenUrl.opacity=0.7; }
-                onClicked: {
-                    plasmoid.openUrl(url);              
-                    dialog.visible = false;
-                    html = "";
-                    error = false;
-                }
+            onClicked: {
+                plasmoid.openUrl(url);              
+                dialog.visible = false;
+                html = "";
+                error = false;
             }
-        }
+        }    
         
         PlasmaComponents.Label {
             id: dialogLabel
@@ -97,7 +85,7 @@ PlasmaCore.Dialog {
             elide: Text.ElideRight
         }
         
-        PlasmaCore.SvgItem {
+        PlasmaComponents.ToolButton {
             id: dialogDelete
             
             anchors {
@@ -107,26 +95,14 @@ PlasmaCore.Dialog {
             width: dialogLabel.height
             height: dialogLabel.height
             
-            opacity: 0.7
-            Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutQuad; } }
+            iconSource: "window-close"
             
-            svg: PlasmaCore.Svg { imagePath: "widgets/configuration-icons" }
-            elementId: "close"
-                        
-            MouseArea {
-                anchors.fill: parent
-                
-                hoverEnabled: true
-                
-                onEntered: { dialogDelete.opacity=1; }
-                onExited: { dialogDelete.opacity=0.7; }
-                onClicked: {
-                    dialog.visible = false;
-                    html = "";
-                    error = false;
-                }
+            onClicked: {
+                dialog.visible = false;
+                html = "";
+                error = false;
             }
-        }
+        }        
                     
         PlasmaCore.SvgItem {
             id: dialogLine

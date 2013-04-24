@@ -4,7 +4,6 @@
 ** scrollarea issue when removing items (scrollbar doesn't update/behave bad)
 * language automatic setting: 3-character language codes not supported (ksh-Ripoarisch, rue-русиньскый)
 * fix text vertical alignement (title and time in list items)
-* (fix daylight saving time issue - now works?)
 * ...
 
 == Improvements ==

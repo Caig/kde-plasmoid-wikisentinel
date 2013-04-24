@@ -372,9 +372,9 @@ Item {
                 
                 hoverEnabled: true
                 
-                onEntered: { itemDelete.opacity=0.7; }
+                //onEntered: { itemDelete.opacity=0.7; }
                 
-                onExited: { itemDelete.opacity=0.1; }
+                //onExited: { itemDelete.opacity=0.1; }
                 
                 onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
@@ -418,7 +418,7 @@ Item {
                     );
                 }
             }
-            
+            /*
             PlasmaCore.SvgItem {
                 id: itemDelete
                 
@@ -453,6 +453,29 @@ Item {
                             messageLabel.visible = true;
                     }
                 }
+            }
+            */
+            PlasmaComponents.ToolButton {
+                id:itemDelete
+                
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                }
+                
+                width: parent.height
+                height: parent.height
+                
+                iconSource: "window-close"
+                
+                onClicked: {
+                    console.log("Delete: " + title);
+                    Database.updateItemInDB(sourceWiki, time, "hidden"); //the item isn't deleted because its time can be useful to know what pages from the feed are new...
+                    dataList.remove(index);
+                    if (dataList.count == 0)
+                        messageLabel.visible = true;
+                }
+            
             }
             
             ListView.onRemove:

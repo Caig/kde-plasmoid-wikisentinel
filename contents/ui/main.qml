@@ -307,11 +307,14 @@ Item {
         ListView {
             id: itemList
             
-            anchors.fill: parent
+            //anchors.fill: parent
             
             model: dataList
             delegate: singleItemComponent
-            //highlight: PlasmaComponents.Highlight {}
+            highlight: PlasmaComponents.Highlight {}
+            
+            snapMode: ListView.SnapToItem
+            //focus: true
         }
     }
     
@@ -359,7 +362,6 @@ Item {
                 anchors {
                     right: itemDelete.left
                     rightMargin: 5
-                    //baseline: itemName.baseline
                 }
                 
                 font.pointSize: theme.smallestFont.pointSize
@@ -372,9 +374,7 @@ Item {
                 
                 hoverEnabled: true
                 
-                //onEntered: { itemDelete.opacity=0.7; }
-                
-                //onExited: { itemDelete.opacity=0.1; }
+                onEntered: { itemList.currentIndex = index; }
                 
                 onClicked: {
                     Database.updateItemInDB(sourceWiki, time, "read"); //mark item as read
@@ -382,10 +382,11 @@ Item {
                     
                     diffDialog.title = Utils.toShortName(title) + " - " + i18n("Difference between revisions");
                     
-                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:UserLogin&returnto=Special:Translate&returntoquery=group=page-" + Utils.toShortName(title) + "&task=view&language=" + languageCode;
+                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:Translate&group=page-" + Utils.toShortName(title) + "&task=view&language=" + languageCode;
                     
                     diffDialog.windowFlags = Qt.Popup;
-
+                    diffDialog.visualParent = singleItem;
+                    
                     var pos = diffDialog.popupPosition(singleItem);
                     diffDialog.x = pos.x;
                     diffDialog.y = pos.y;
@@ -418,43 +419,7 @@ Item {
                     );
                 }
             }
-            /*
-            PlasmaCore.SvgItem {
-                id: itemDelete
-                
-                anchors {
-                    verticalCenter: parent.verticalCenter
-                    right: parent.right
-                }
-                
-                width: parent.height
-                height: parent.height
-                
-                opacity: 0.1
-                Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutQuad; } }
-                
-                svg: PlasmaCore.Svg { imagePath: "widgets/configuration-icons" }
-                elementId: "close"
-                  
-                MouseArea {
-                    anchors.fill: parent
-                    
-                    hoverEnabled: true
-                    
-                    onEntered: { itemDelete.opacity=1; }
-                    
-                    onExited: { itemDelete.opacity=0.1; }
-                    
-                    onClicked: {
-                        console.log("Delete: " + title);
-                        Database.updateItemInDB(sourceWiki, time, "hidden"); //the item isn't deleted because its time can be useful to know what pages from the feed are new...
-                        dataList.remove(index);
-                        if (dataList.count == 0)
-                            messageLabel.visible = true;
-                    }
-                }
-            }
-            */
+
             PlasmaComponents.ToolButton {
                 id:itemDelete
                 

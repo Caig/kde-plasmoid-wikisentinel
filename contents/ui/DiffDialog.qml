@@ -27,6 +27,7 @@ import "plasmapackage:/code/getdatafromwiki.js" as GetDataFromWiki
 PlasmaCore.Dialog {
     id: dialog
     
+    property Item visualParent;
     property alias title: dialogLabel.text
     property alias html: htmlText.text
     property string url

@@ -71,7 +71,7 @@
       <item row="2" column="1">
        <widget class="QSpinBox" name="kcfg_updateInterval">
         <property name="suffix">
-         <string> hours</string>
+         <string> hour(s)</string>
         </property>
         <property name="minimum">
          <number>1</number>
@@ -103,7 +103,7 @@
       <item row="0" column="1">
        <widget class="QSpinBox" name="kcfg_keepForDaysNumber">
         <property name="suffix">
-         <string> days</string>
+         <string> day(s)</string>
         </property>
         <property name="minimum">
          <number>7</number>
@@ -126,7 +126,7 @@
       <item row="1" column="1">
        <widget class="QSpinBox" name="kcfg_keepMaxItemsNumber">
         <property name="suffix">
-         <string> items</string>
+         <string> item(s)</string>
         </property>
         <property name="minimum">
          <number>5</number>

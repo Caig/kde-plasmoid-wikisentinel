@@ -8,7 +8,7 @@
 == Improvements ==
 ** continue to clean the code according to guidelines
 * add useful bits to icon tooltip on panel
-* better config ui (is it possible to have more than one section?) and make translatable that strings (how?)
+* better config ui (is it possible to have more than one section?)
 * better language code configuration (list of languages?)
 * config option to enable/disable notifications
 * avoid duplicated items in notifications

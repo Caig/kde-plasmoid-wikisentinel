@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the plasma_applet_wikisentinel package.
 #
 #
-# Caig <giacomosrv@gmail.com>, 2012.
+# Caig <giacomosrv@gmail.com>, 2012, 2013.
 #: ../ui/main.qml:471
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-18 16:23+0200\n"
-"PO-Revision-Date: 2012-11-12 17:29+0100\n"
+"POT-Creation-Date: 2013-05-18 17:01+0200\n"
+"PO-Revision-Date: 2013-05-18 16:58+0200\n"
 "Last-Translator: Caig <giacomosrv@gmail.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,115 @@ msgstr "Nessuna pagina da aggiornare."
 msgid "Difference between revisions"
 msgstr "Differenza tra le revisioni"
 
-#: rc.js:1
+#. i18n: file: ../ui/config.ui:17
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: rc.js:3
+msgid "General"
+msgstr "Generale"
+
+#. i18n: file: ../ui/config.ui:23
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.js:6
+msgid "KDE Wiki"
+msgstr "KDE Wiki"
+
+#. i18n: file: ../ui/config.ui:34
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_wiki)
+#: rc.js:9
+msgid "UserBase"
+msgstr "UserBase"
+
+#. i18n: file: ../ui/config.ui:39
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_wiki)
+#: rc.js:12
+msgid "TechBase"
+msgstr "TechBase"
+
+#. i18n: file: ../ui/config.ui:47
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#. i18n: file: ../config/main.xml:14
+#: rc.js:15 rc.js:40
+msgid "Language code"
+msgstr "Codice della lingua"
+
+#. i18n: file: ../ui/config.ui:64
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.js:18
+msgid "Update every"
+msgstr "Aggiorna ogni"
+
+#. i18n: file: ../ui/config.ui:74
+#. i18n: ectx: property (suffix), widget (QSpinBox, kcfg_updateInterval)
+#: rc.js:21
+msgid " hour(s)"
+msgstr " ora/e"
+
+#. i18n: file: ../ui/config.ui:90
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: rc.js:24
+msgid "Archive"
+msgstr "Archivio"
+
+#. i18n: file: ../ui/config.ui:96
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_keepForDays)
+#: rc.js:27
+msgid "Keep items for"
+msgstr "Tieni gli elementi per"
+
+#. i18n: file: ../ui/config.ui:106
+#. i18n: ectx: property (suffix), widget (QSpinBox, kcfg_keepForDaysNumber)
+#: rc.js:30
+msgid " day(s)"
+msgstr " giorno/i"
+
+#. i18n: file: ../ui/config.ui:122
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_keepMaxItems)
+#: rc.js:33
+msgid "Keep no more than"
+msgstr "Tieni non più di"
+
+#. i18n: file: ../ui/config.ui:129
+#. i18n: ectx: property (suffix), widget (QSpinBox, kcfg_keepMaxItemsNumber)
+#: rc.js:36
+msgid " item(s)"
+msgstr " elemento/i"
+
+#. i18n: file: ../config/main.xml:10
+#: rc.js:38
+msgid "The KDE wiki to follow"
+msgstr "Il wiki KDE da seguire"
+
+#. i18n: file: ../config/main.xml:18
+#: rc.js:42
+msgid "Update every...hours"
+msgstr "Aggiorna ogni...ore"
+
+#. i18n: file: ../config/main.xml:24
+#: rc.js:44
+msgid "Keep fixed number of items"
+msgstr "Tieni un numero fisso di elementi"
+
+#. i18n: file: ../config/main.xml:28
+#: rc.js:46
+msgid "Number of items to keep"
+msgstr "Numero di elementi da tenere"
+
+#. i18n: file: ../config/main.xml:32
+#: rc.js:48
+msgid "Remove older items"
+msgstr "Rimuovi gli elementi più vecchi"
+
+#. i18n: file: ../config/main.xml:36
+#: rc.js:50
+msgid "Days to keep the items"
+msgstr "Giorni per cui tenere gli elementi"
+
+#: rc.js:51
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Caig"
 
-#: rc.js:2
+#: rc.js:52
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "giacomosrv@gmail.com"

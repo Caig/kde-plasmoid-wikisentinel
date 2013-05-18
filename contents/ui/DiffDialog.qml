@@ -27,7 +27,7 @@ import "plasmapackage:/code/getdatafromwiki.js" as GetDataFromWiki
 PlasmaCore.Dialog {
     id: dialog
     
-    property Item visualParent;
+    //property Item visualParent;
     property alias title: dialogLabel.text
     property alias html: htmlText.text
     property string url
@@ -138,7 +138,7 @@ PlasmaCore.Dialog {
             Flickable {
                 id: scrollable
                 
-                anchors.fill: parent
+                //anchors.fill: parent
                 
                 //contentWidth: htmlText.width
                 contentHeight: htmlText.height
@@ -153,8 +153,10 @@ PlasmaCore.Dialog {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     
-                    wrapMode: Text.Wrap
+                    wrapMode: Text.Wrap //WordWrap
                     textFormat: Text.RichText
+                    
+                    //onTextChanged: { baseItem.width = Math.max(600, htmlText.paintedWidth); }
                 }  
             }
         }

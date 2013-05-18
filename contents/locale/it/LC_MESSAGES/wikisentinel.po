@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the plasma_applet_wikisentinel package.
 #
 #
-# Giacomo Barazzetti <giacomosrv@gmail.com>, 2012.
+# Caig <giacomosrv@gmail.com>, 2012.
+#: ../ui/main.qml:471
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-12 17:44+0100\n"
+"POT-Creation-Date: 2013-05-18 16:23+0200\n"
 "PO-Revision-Date: 2012-11-12 17:29+0100\n"
-"Last-Translator: Giacomo Barazzetti <giacomosrv@gmail.com>\n"
-"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Last-Translator: Caig <giacomosrv@gmail.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: ../ui/DiffDialog.qml:240
+#: ../ui/DiffDialog.qml:193
 msgid "Sorry, an error occurred. Try to open the page in your browser."
 msgstr "Si è verificato un errore. Prova ad aprire la pagina nel tuo browser."
 
-#: ../ui/main.qml:88
+#: ../ui/main.qml:133
 msgid "needs you to update:"
 msgstr "ha bisogno di te per aggiornare:"
 
-#: ../ui/main.qml:280
+#: ../ui/main.qml:335
 msgid "No pages to update."
 msgstr "Nessuna pagina da aggiornare."
 
-#: ../ui/main.qml:346
+#: ../ui/main.qml:383
 msgid "Difference between revisions"
 msgstr "Differenza tra le revisioni"
 

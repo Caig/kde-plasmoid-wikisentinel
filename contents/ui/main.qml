@@ -385,7 +385,7 @@ Item {
                     diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:Translate&group=page-" + Utils.toShortName(title) + "&task=view&language=" + languageCode;
                     
                     diffDialog.windowFlags = Qt.Popup;
-                    diffDialog.visualParent = singleItem;
+                    //diffDialog.visualParent = singleItem;
                     
                     var pos = diffDialog.popupPosition(singleItem);
                     diffDialog.x = pos.x;
@@ -404,12 +404,14 @@ Item {
                                 diffDialog.error = true;
                             }
                             else {                          
-                                // Use the better text color according to Plasma theme and other fixes.
+                                // Use better text color according to Plasma theme and other fixes.
                                 // Can't use an external css stylesheet.
                                     
-                                var style = "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}td.diff-lineno{font-weight:bold}td.diff-addedline{background-color:#CCFFCC;}td.diff-deletedline{background-color:#ffa;}.diffchange{color:red;font-weight:bold;text-decoration:none}</style>";
+                                var style = "<style type=\"text/css\">td.diff-lineno,td.diff-marker,td.diff-context{color:" + theme.textColor + ";}td.diff-lineno{font-weight:bold;}td.diff-addedline{background-color:#CCFFCC;}td.diff-deletedline{background-color:#ffa;}.diffchange{color:red;font-weight:bold;text-decoration:none}</style>";
                                     
                                 data = "<html>" + style + "<table class=\"diff\">" + data + "</table></html>";
+                                
+                                //data = data.replace("<td colspan=\"2\" class=\"diff-lineno\">","<td colspan=\"2\" width=\"50%\" class=\"diff-lineno\">");
                                 
                                 diffDialog.html = data;
                             }

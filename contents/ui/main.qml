@@ -382,7 +382,7 @@ Item {
                     
                     diffDialog.title = Utils.toShortName(title) + " - " + i18n("Difference between revisions");
                     
-                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:Translate&group=page-" + Utils.toShortName(title) + "&task=view&language=" + languageCode;
+                    diffDialog.url = sourceWikiBaseUrl + "/index.php?title=Special:Translate&group=page-" + Utils.toShortName(title) + "&task=untranslated&language=" + languageCode;
                     
                     diffDialog.windowFlags = Qt.Popup;
                     //diffDialog.visualParent = singleItem;
@@ -467,7 +467,7 @@ Item {
         if (plasmoid.formFactor == Horizontal || plasmoid.formFactor == Vertical) {
             var toolTipData = new Object;
             toolTipData["image"] = plasmoid.file("images", "icon.png");
-            toolTipData["mainText"] = i18n("WikiSentinel");
+            toolTipData["mainText"] = "WikiSentinel";
             toolTipData["subText"] = i18n("");
             plasmoid.popupIconToolTip = toolTipData;
         }

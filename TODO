@@ -3,6 +3,7 @@
 == Bugs ==
 * language automatic setting: 3-character language codes not supported (ksh-Ripoarisch, rue-русиньскый)
 * esc key doesn't close the preview dialog window (focus issue)
+* the first time the plasmoid is used (database creation) the items order is wrong and there is an issue with normal/bold text for read/unread items
 * ...
 
 == Improvements ==

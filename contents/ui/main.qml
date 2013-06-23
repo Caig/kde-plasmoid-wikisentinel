@@ -105,7 +105,7 @@ Item {
             }
             else
             {
-                var newPages = ""; // to build a notification body if needed
+                var newPages = new Array(); // to build a notification body if needed
                 
                 for (var i=0; i<data["items"].length; i++) {
                     DBTime = data["items"][i]["time"];
@@ -120,7 +120,9 @@ Item {
                             Database.addItemToDB(DBWiki, DBRead, DBTime, DBTitle, DBLink);
                             dataList.insert(0, {"wiki": DBWiki, "read": DBRead, "time": DBTime, "title": DBTitle, "link": DBLink});
                             
-                            newPages += Utils.toShortName(DBTitle) + "\n";
+                            var newPage = Utils.toShortName(DBTitle);
+                            if (newPages.indexOf(newPage) == -1)
+                                newPages.push(newPage);
                         }
                         else {
                             console.log("No new translation to update.");
@@ -129,8 +131,8 @@ Item {
                     }
                 }
                 
-                if (newPages != "")
-                    sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), newPages);
+                if (newPages.length != 0)
+                    sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), newPages.join("\n"));
                 
                 if (keepMaxItems == true)
                 {

@@ -4,18 +4,20 @@
 * language automatic setting: 3-character language codes not supported (ksh-Ripoarisch, rue-русиньскый)
 * esc key doesn't close the preview dialog window (focus issue)
 * the first time the plasmoid is used (database creation) the items order is wrong and there is an issue with normal/bold text for read/unread items
-* ...
 
 == Improvements ==
-** continue to clean the code according to guidelines
+* continue to clean the code according to guidelines
 * add useful bits to icon tooltip on panel
 * better config ui (is it possible to have more than one section?)
 * better language code configuration (list of languages?)
-* config option to enable/disable notifications
-* update at request (useful?) (> 1.0)
-* more flexible archive (keep always not read items? etc?) (> 1.0)
-* download the po file and open it to start translating as alternative action? (> 1.0)
-* preview dialog window resizeable? or (> 1.0)
-* preview inside the plasmoid itself (tabs)? (> 1.0)
-* org.kde.servicestorage? (> 1.0)
-* ...
+
+> 1.0
+* org.kde.servicestorage?
+* update at request (useful?)
+* download the po file and open it to start translating as alternative action?
+* preview dialog window resizeable? or
+* preview inside the plasmoid itself (with tabs)?
+* more flexible archive (keep always not read items? etc?)
+* get (and kept updated) the current completion percentage, with config option
+* if a page is 100% translated, remove it from the list, with config option
+* get (and kept updated) the number of messages to update/translate, with config option

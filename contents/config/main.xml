@@ -7,7 +7,7 @@
 <kcfgfile name=""/>
 <group name="General">
     <entry name="wiki" type="Int">
-        <label>The KDE wiki to follow</label>
+        <label>The KDE wiki to monitor</label>
         <default>0</default>
     </entry>
     <entry name="language" type="String">
@@ -17,6 +17,10 @@
     <entry name="updateInterval" type="Int">
         <label>Update every...hours</label>
         <default>1</default>
+    </entry>
+    <entry name="enabledNotifications" type="Bool">
+        <label>Enabled notifications</label>
+        <default>true</default>
     </entry>
 </group>
 <group name="Storing">

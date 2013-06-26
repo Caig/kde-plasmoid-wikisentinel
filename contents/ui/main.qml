@@ -37,6 +37,8 @@ Item {
     property string sourceWikiBaseUrl
     property string languageCode
     property string updateInterval
+    property bool enabledNotifications
+    
     property int latestTimeInDB // to understand if an item in the feed is new
     
     // settings for the archive management
@@ -131,7 +133,7 @@ Item {
                     }
                 }
                 
-                if (newPages.length != 0)
+                if (newPages.length != 0 && enabledNotifications == true)
                     sendNotification("KDE " + DBWiki + " " + i18n("needs you to update:"), newPages.join("\n"));
                 
                 if (keepMaxItems == true)
@@ -190,9 +192,7 @@ Item {
         dataEngine: "notifications"
     }
     
-    function configChanged() {
-        //problema se più di un plasmoide x accesso a database?!
-        
+    function configChanged() {        
         languageCode = plasmoid.readConfig("language");
         if (languageCode == "") { // if it's the first execution (or an issue to fix)
             var lang = locale.language;
@@ -206,6 +206,8 @@ Item {
         }
 
         updateInterval = plasmoid.readConfig("updateInterval");
+        
+        enabledNotifications = plasmoid.readConfig("enabledNotifications");
         
         keepMaxItems = plasmoid.readConfig("keepMaxItems");
         keepMaxItemsNumber = plasmoid.readConfig("keepMaxItemsNumber");
@@ -470,7 +472,7 @@ Item {
             var toolTipData = new Object;
             toolTipData["image"] = plasmoid.file("images", "icon.png");
             toolTipData["mainText"] = "WikiSentinel";
-            toolTipData["subText"] = i18n("");
+            toolTipData["subText"] = "" //i18n("");
             plasmoid.popupIconToolTip = toolTipData;
         }
         

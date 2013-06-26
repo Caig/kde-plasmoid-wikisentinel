@@ -1,15 +1,14 @@
 # plasma_applet_wikisentinel language translation file.
-# Copyright (C) 2012 Caig
+# Copyright (C) 2012-2013 Caig
 # This file is distributed under the same license as the plasma_applet_wikisentinel package.
 # 
 #
-#: ../ui/main.qml:471
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.9.9.5\n"
+"Project-Id-Version: 0.9.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-18 17:01+0200\n"
+"POT-Creation-Date: 2013-06-26 20:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +21,15 @@ msgstr ""
 msgid "Sorry, an error occurred. Try to open the page in your browser."
 msgstr ""
 
-#: ../ui/main.qml:133
+#: ../ui/main.qml:137
 msgid "needs you to update:"
 msgstr ""
 
-#: ../ui/main.qml:335
+#: ../ui/main.qml:339
 msgid "No pages to update."
 msgstr ""
 
-#: ../ui/main.qml:383
+#: ../ui/main.qml:387
 msgid "Difference between revisions"
 msgstr ""
 
@@ -60,8 +59,7 @@ msgstr ""
 
 #. i18n: file: ../ui/config.ui:47
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#. i18n: file: ../config/main.xml:14
-#: rc.js:15 rc.js:40
+#: rc.js:15
 msgid "Language code"
 msgstr ""
 
@@ -77,72 +75,54 @@ msgstr ""
 msgid " hour(s)"
 msgstr ""
 
-#. i18n: file: ../ui/config.ui:90
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: file: ../ui/config.ui:87
+#. i18n: ectx: property (text), widget (QLabel, label_4)
 #: rc.js:24
+msgid "Notifications"
+msgstr ""
+
+#. i18n: file: ../ui/config.ui:97
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enabledNotifications)
+#: rc.js:27
+msgid "Enabled"
+msgstr ""
+
+#. i18n: file: ../ui/config.ui:110
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: rc.js:30
 msgid "Archive"
 msgstr ""
 
-#. i18n: file: ../ui/config.ui:96
+#. i18n: file: ../ui/config.ui:116
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_keepForDays)
-#: rc.js:27
+#: rc.js:33
 msgid "Keep items for"
 msgstr ""
 
-#. i18n: file: ../ui/config.ui:106
+#. i18n: file: ../ui/config.ui:126
 #. i18n: ectx: property (suffix), widget (QSpinBox, kcfg_keepForDaysNumber)
-#: rc.js:30
+#: rc.js:36
 msgid " day(s)"
 msgstr ""
 
-#. i18n: file: ../ui/config.ui:122
+#. i18n: file: ../ui/config.ui:142
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_keepMaxItems)
-#: rc.js:33
+#: rc.js:39
 msgid "Keep no more than"
 msgstr ""
 
-#. i18n: file: ../ui/config.ui:129
+#. i18n: file: ../ui/config.ui:149
 #. i18n: ectx: property (suffix), widget (QSpinBox, kcfg_keepMaxItemsNumber)
-#: rc.js:36
+#: rc.js:42
 msgid " item(s)"
 msgstr ""
 
-#. i18n: file: ../config/main.xml:10
-#: rc.js:38
-msgid "The KDE wiki to follow"
-msgstr ""
-
-#. i18n: file: ../config/main.xml:18
-#: rc.js:42
-msgid "Update every...hours"
-msgstr ""
-
-#. i18n: file: ../config/main.xml:24
-#: rc.js:44
-msgid "Keep fixed number of items"
-msgstr ""
-
-#. i18n: file: ../config/main.xml:28
-#: rc.js:46
-msgid "Number of items to keep"
-msgstr ""
-
-#. i18n: file: ../config/main.xml:32
-#: rc.js:48
-msgid "Remove older items"
-msgstr ""
-
-#. i18n: file: ../config/main.xml:36
-#: rc.js:50
-msgid "Days to keep the items"
-msgstr ""
-
-#: rc.js:51
+#: rc.js:43
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: rc.js:52
+#: rc.js:44
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
